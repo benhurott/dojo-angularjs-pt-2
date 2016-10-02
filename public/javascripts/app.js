@@ -26,5 +26,24 @@ angular.module('dojo', [])
     $scope.getStars = function(number) {
         return new Array(number);
     };
+}])
 
-}]);
+
+.directive('myStars', [function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/directives/my-stars/my-stars.html',
+        scope: {
+            stars: '='
+        },
+        link: function(scope, element, attrs) {
+            scope.getStars = function(number) {
+                return new Array(number);
+            };
+        }
+    };
+}])
+
+
+
+

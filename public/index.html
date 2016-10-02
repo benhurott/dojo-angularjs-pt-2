@@ -17,10 +17,7 @@
                 <div class="movie" 
                      ng-repeat="m in movies"
                      ng-style="{'background-image':'url('+ m.imageUrl +')'}">
-                     <div class="movie__stars">
-                         <img src="images/star.png" 
-                              ng-repeat="start in getStars(m.ranking) track by $index">
-                     </div>
+                     <my-stars stars="m.ranking"></my-stars>
                     <div class="movie__info">
                         {{m.title}}
                     </div>

@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var app = express();
 
 // view engine setup
+app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
 // uncomment after placing your favicon in /public
