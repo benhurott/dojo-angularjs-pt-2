@@ -23,9 +23,10 @@ angular.module('dojo', [])
         }
     ];
 
-    $scope.getStars = function(number) {
-        return new Array(number);
+    $scope.onSelectMovie = function(movie) {
+        alert(movie.title);
     };
+
 }])
 
 
@@ -39,6 +40,22 @@ angular.module('dojo', [])
         link: function(scope, element, attrs) {
             scope.getStars = function(number) {
                 return new Array(number);
+            };
+        }
+    };
+}])
+
+.directive('movieCollection', [function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/directives/movie-collection/movie-collection.html',
+        scope: {
+            movies: '=',
+            onSelectMovie: '&'
+        },
+        link: function(scope, element, attrs) {
+            scope.__onSelectMovie = function(movie) {
+                scope.onSelectMovie()(movie);
             };
         }
     };

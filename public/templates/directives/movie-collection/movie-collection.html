@@ -1,0 +1,16 @@
+<div class="row text-center">
+    <div class="col-lg-12 col-md-12">
+        <div class="movie" 
+                ng-repeat="m in movies"
+                ng-style="{'background-image':'url('+ m.imageUrl +')'}"
+                ng-click="__onSelectMovie(m)">
+                <my-stars stars="m.ranking"></my-stars>
+            <div class="movie__info">
+                {{m.title}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
