@@ -1,9 +1,46 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  
+  background-color: #121915;
+  padding: 50px;
 }
 
 a {
   color: #00B7FF;
 }
+
+.movie {
+  height: 300px;
+  width: 450px;
+  position: relative;
+  float: left;
+  margin: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+  .movie:hover {
+    opacity: 0.8;
+  }
+
+  .movie__stars {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+  }
+
+    .movie__stars img {
+      height: 20px;
+    }
+
+  .movie__info {
+    position: absolute;
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    bottom: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 10px;
+    border-top-left-radius: 5px;
+  }
