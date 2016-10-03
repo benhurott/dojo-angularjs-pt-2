@@ -12,10 +12,12 @@
     <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
-<body ng-controller="HomeCtrl">
-    <div class="container-fluid">
-        <movie-collection movies="movies"
-            on-select-movie="onSelectMovie"></movie-collection>
+<body>
+    <div ng-controller="HomeCtrl" ng-init="loadMovies()">
+        <div class="container-fluid">
+            <movie-collection movies="movies"
+                on-select-movie="onSelectMovie"></movie-collection>
+        </div>
     </div>
 
     <script src="libs/jquery-3.1.1.min.js"></script>
