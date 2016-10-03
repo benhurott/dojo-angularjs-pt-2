@@ -9,10 +9,9 @@ a {
 }
 
 .movie {
-  height: 300px;
+  height: 500px;
   width: 450px;
   position: relative;
-  float: left;
   margin: 20px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -32,6 +31,7 @@ a {
 
     .movie__stars img {
       height: 20px;
+      float: left;
     }
 
   .movie__info {
