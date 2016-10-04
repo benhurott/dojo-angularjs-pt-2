@@ -6,7 +6,7 @@ angular.module('dojo', [])
 
     .value('API_URL', '/api')
 
-    .controller('HomeCtrl', ['$scope', '$http', 'MovieService', function ($scope, $http, MovieService) {
+    .controller('HomeCtrl', ['$scope', '$http', 'MovieService', 'LoaderService', function ($scope, $http, MovieService, LoaderService) {
 
         $scope.movies = [];
 
@@ -16,10 +16,12 @@ angular.module('dojo', [])
 
         $scope.loadMovies = function() {
             //$scope.movies = MovieService.getMovies();
+            LoaderService.show();
 
             MovieService.getMovies()
                 .then(function (movies) {
                     $scope.movies = movies;
+                    LoaderService.hide();
                 });
         };
     }])
@@ -73,11 +75,44 @@ angular.module('dojo', [])
         };
     }])
 
-    .factory('MovieService', ['$http', 'API', function ($http, API_URL) {
+    .constant('LOADER_EVENTS', {
+        SHOW: '$myAppLoaderEventsShow',
+        HIDE: '$myAppLoaderEventsHide'
+    })
+
+    .directive('loader', ['LOADER_EVENTS', function(LOADER_EVENTS){
+
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/directives/loader/loader.html',
+            link: function(scope, element, attrs) {
+                scope.$on(LOADER_EVENTS.SHOW, function() {
+                    scope.visible = true;
+                });
+
+                scope.$on(LOADER_EVENTS.HIDE, function() {
+                    scope.visible = false;
+                });
+            }
+        };
+    }])
+
+    .factory('LoaderService', ['$rootScope', 'LOADER_EVENTS', function($rootScope, LOADER_EVENTS){
+        return {
+            show: function() {
+                $rootScope.$broadcast(LOADER_EVENTS.SHOW);
+            },
+            hide: function() {
+                $rootScope.$broadcast(LOADER_EVENTS.HIDE);
+            }
+        }
+    }])
+
+    .factory('MovieService', ['$http', 'API', function ($http, API) {
         
         return {
             getMovies: function () {
-                return $http.get(API_URL + '/movies')
+                return $http.get(API.url + '/movies')
                     .then(function(response) {
                         return response.data;
                     });

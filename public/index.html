@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    <div ng-controller="HomeCtrl" ng-init="loadMovies()">
+    <loader></loader>
+    <div ng-controller="HomeCtrl">
+        <button class="btn" ng-click="loadMovies()">Carregar</button>
         <div class="container-fluid">
             <movie-collection movies="movies"
                 on-select-movie="onSelectMovie"></movie-collection>
