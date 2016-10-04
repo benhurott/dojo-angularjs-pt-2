@@ -1,5 +1,11 @@
 angular.module('dojo', [])
 
+    .constant('API', {
+        url: '/api'
+    })
+
+    .value('API_URL', '/api')
+
     .controller('HomeCtrl', ['$scope', '$http', 'MovieService', function ($scope, $http, MovieService) {
 
         $scope.movies = [];
@@ -67,11 +73,11 @@ angular.module('dojo', [])
         };
     }])
 
-    .factory('MovieService', ['$http', function ($http) {
+    .factory('MovieService', ['$http', 'API', function ($http, API_URL) {
         
         return {
             getMovies: function () {
-                return $http.get('/movies')
+                return $http.get(API_URL + '/movies')
                     .then(function(response) {
                         return response.data;
                     });
